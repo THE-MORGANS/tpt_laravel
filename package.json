@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "framer-motion": "^8.4.3",
+        "react-icons": "^4.7.1",
         "react-responsive-carousel": "^3.2.23"
     }
 }

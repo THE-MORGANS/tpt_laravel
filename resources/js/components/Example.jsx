@@ -1,11 +1,23 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { animate, motion } from 'framer-motion';
+import { SliderData } from './slide';
+import { AiOutlineArrowLeft, AiOutlineArrowRight  } from 'react-icons/ai';
+import {casestudies} from './Case';
+import "./css/chat.css";
+import Navbar from './Navbar';
+import MoblieNav from './MoblieNav';
+// console.log(SliderData)
 function Example() {
+    let arr = [1, 2, 3, 4]
     const [num, Setnum] = useState(0)
-    //  [ -1900,   1900, ]
+    const [stop, Setstop] = useState(false)
+    const [current, setCurrent] = useState(0);
+//   const length = slides.length;
+//  console.log(casestudies)
+let Datas = casestudies.slice(0,3);
 
     const handleClick =(e)=>{
       // Setnum()
@@ -18,245 +30,166 @@ function Example() {
     // 1900
       }
     }
+
+
+
+
+    useEffect(()=>{
+        const inter =   setInterval(
+            () => Setnum((num + 1) % arr.length),
+            1000
+          );
+        return ()=>clearInterval(inter)
+    },[num])
+
+
+    const nextSlide = () => {
+        setCurrent((current + 1) % SliderData.length );
+      };
+
+      const prevSlide = () => {
+        if(current > 0){
+            setCurrent((current - 1) % SliderData.length );
+
+        }else{
+            setCurrent(SliderData.length - 1 );
+        }
+      };
+
+const [show, Setshow] =useState(false)
+
+
+
+
+
     const offer = { visibility:"visible", animationDelay:"0.1s", animationName:"fadeInUp" }
     return (
       <div>
 
 
         <div className="main">
+           {/* header view start */}
+           <Navbar Setshow={Setshow} show={show}/>
+           <MoblieNav Setshow={Setshow} show={show} />
+           {/* header view end */}
 
-          <header className="header-4 bg-transparent sticky-bar mt-4">
-              <div className="container bg-transparent">
-                  <nav className="bg-transparent flex justify-between items-center py-3">
-                      <a className="text-3xl font-semibold leading-none" href="index.html">
-                          <img className="h-10" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606570/Tpt/imgs/logos/TPT-logo_uwq0un.png" alt="" />
-                      </a>
-                      <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-12">
-                          <li className="pt-4 pb-4">
-                              <a href="index.html"
-                                  className="text-sm font-semibold text-white hover:text-blueGray-500">Home</a>
-                          </li>
-                          <li className="pt-4 pb-4">
-                              <a className="text-sm font-semibold text-white hover:text-blueGray-500" href="about.html">At a
-                                  glance</a>
-                          </li>
-                          <li className="pt-4 pb-4">
-                              <a className="text-sm font-semibold text-white hover:text-blueGray-500" href="services.html">Our
-                                  services</a>
-                          </li>
-                          <li className="pt-4 pb-4">
-                              <a className="text-sm font-semibold text-white hover:text-blueGray-500" href="#">Case
-                                  studies</a>
-                          </li>
-                          <li className="pt-4 pb-4">
-                              <a className="text-sm font-semibold text-white hover:text-blueGray-500" href="#">Digiconvers</a>
-                          </li>
-                          <li className="pt-4 pb-4"><a className="text-sm font-semibold text-white hover:text-blueGray-500"
-                                  href="#">News</a></li>
-                          <li className="pt-4 pb-4"><a className="text-sm font-semibold text-white hover:text-blueGray-500"
-                                  href="#">Connect & contact</a></li>
-                      </ul>
-                      <div className="lg:hidden">
-                          <button
-                              className="navbar-burger flex items-center py-2 px-3 text-blue-500 hover:text-blue-700 rounded border border-blue-200 hover:border-blue-300">
-                              <svg className="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                  <title>Mobile menu</title>
-                                  <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-                              </svg>
-                          </button>
-                      </div>
-                  </nav>
-              </div>
-          </header>
-
-
-          <div className="hidden navbar-menu relative z-50 transition duration-300">
-              <div className="navbar-backdrop fixed inset-0 bg-blueGray-800 opacity-25"></div>
-              <nav
-                  className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto transition duration-300">
-                  <div className="flex items-center mb-8">
-                      <a className="mr-auto text-3xl font-semibold leading-none" href="#">
-                          <img className="h-10" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606570/Tpt/imgs/logos/monst-logo_xdyxjw.svg" alt="" />
-                      </a>
-                      <button className="navbar-close">
-                          <svg className="h-6 w-6 text-blueGray-400 cursor-pointer hover:text-blue-500"
-                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                  d="M6 18L18 6M6 6l12 12"></path>
-                          </svg>
-                      </button>
-                  </div>
-                  <div>
-                      <ul className="mobile-menu">
-                          <li className="mb-1 menu-item-has-children rounded-xl">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500 rounded-xl"
-                                  href="#">Home</a>
-                              <ul className="dropdown pl-5">
-                                  <li>
-                                      <a className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                          href="index.html">Home 1</a>
-                                  </li>
-                                  <li>
-                                      <a className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                          href="index-2.html">Home 2</a>
-                                  </li>
-                                  <li>
-                                      <a className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                          href="index-3.html">Home 3</a>
-                                  </li>
-                                  <li>
-                                      <a className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                          href="index-4.html">Home 4</a>
-                                  </li>
-                                  <li>
-                                      <a className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                          href="index-5.html">Home 5</a>
-                                  </li>
-                              </ul>
-                          </li>
-                          <li className="mb-1 rounded-xl">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500 rounded-xl"
-                                  href="about.html">About Us</a>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="services.html">Services</a>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="portfolio.html">Portfolio</a>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="pricing.html">Pricing</a>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="team.html">Team</a>
-                          </li>
-                          <li className="mb-1 menu-item-has-children rounded-xl">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="team.html">Blog</a>
-                              <ul className="dropdown pl-5">
-                                  <li>
-                                      <a href="blog.html"
-                                          className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Category
-                                          1</a>
-                                  </li>
-                                  <li>
-                                      <a href="blog-2.html"
-                                          className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Category
-                                          2</a>
-                                  </li>
-                                  <li>
-                                      <a href="blog-single.html"
-                                          className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Single
-                                          1</a>
-                                  </li>
-                                  <li>
-                                      <a href="blog-single-2.html"
-                                          className="block p-3 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500">Single
-                                          2</a>
-                                  </li>
-                              </ul>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="faqs.html">Faqs</a>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="testimonials.html">Testimonial</a>
-                          </li>
-                          <li className="mb-1">
-                              <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
-                                  href="contact.html">Contact Us</a>
-                          </li>
-                      </ul>
-                      <div className="mt-4 pt-6 border-t border-blueGray-100">
-                          <a className="block px-4 py-3 mb-3 text-xs text-center font-semibold leading-none bg-blue-400 hover:bg-blue-500 text-white rounded"
-                              href="#">Sign Up</a>
-                          <a className="block px-4 py-3 mb-2 text-xs text-center text-blue-500 hover:text-blue-700 font-semibold leading-none border border-blue-200 hover:border-blue-300 rounded"
-                              href="#">Log In</a>
-                      </div>
-                  </div>
-                  <div className="mt-auto">
-                      <p className="my-4 text-xs text-blueGray-400">
-                          <span>Get in Touch</span>
-                          <a className="text-blue-500 hover:text-blue-500 underline" href="#"><span className="__cf_email__"
-                                  data-cfemail="fd9e9293899c9e89bd9092938e89d39e9290">[email&#160;protected]</span></a>
-                      </p>
-                      <a className="inline-block px-1" href="#">
-                          <img src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606562/Tpt/imgs/icons/facebook-blue_mkig3t.svg" alt="" />
-                      </a>
-                      <a className="inline-block px-1" href="#">
-                          <img src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606563/Tpt/imgs/icons/twitter-blue_j2nsbs.svg" alt="" />
-                      </a>
-                      <a className="inline-block px-1" href="#">
-                          <img src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606563/Tpt/imgs/icons/instagram-blue_pmb1sp.svg" alt="" />
-                      </a>
-                  </div>
-              </nav>
-          </div>
+           {/* moblie view start */}
+ {/* moblie view end */}
 
           <section className="-mt-24">
-          <Carousel  infiniteLoop useKeyboardArrows autoPlay interval={7500} swipeable={false} dynamicHeight={true} showThumbs={false} showArrows={false} width={'100%'}>
 
-          <div className="bg-top bg-cover bg-no-repeat pb-8 relative pt-24 h-vh" style={{ backgroundImage:"url('https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673618534/Tpt/imgs/stock_cdoqgs.jpg')",  height:"100%"}}>
-          {/* <img src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673618534/Tpt/imgs/stock_cdoqgs.jpg" className=" object-cover w-full h-full" /> */}
+   <Carousel showThumbs={false} showArrows={false}
+   infiniteLoop useKeyboardArrows autoPlay interval={2000}
+   >
+   <div className='relative overflow-hidden'>
+                    <img src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673618534/Tpt/imgs/stock_cdoqgs.jpg" />
 
-          {/* <motion.section
+                    <motion.section
                 animate={{ x: stop?num : 1900  }}
                 onClick={(e)=>handleClick(e)}
                transition={{type:"tween",  repeat:Infinity, duration:7  }}
-               className="  w-36  h-32 absolute top-50">
+            //    className="z-10 absolute"
+               style={{ position:"absolute",
+                bottom:"14px",
+                left:"50%",
+                marginLeft:"-51%",
+                width:"12%"
+            }}
+               >
                    <img src='https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673618537/Tpt/imgs/Bicycle_man_flexc4.gif' className='w-full h-full object-cover' />
-               </motion.section> */}
-                      <div className="container">
-                          <div className="py-12 text-center">
-                              <div className="max-w-2xl mx-auto mb-8">
-                                  <h2
-                                      className="text-white text-3xl lg:text-5xl mb-4 font-bold font-heading wow animate__animated animate__fadeIn">
-                                      TPT <span className="text-blue-500">International</span></h2>
-                                  <p className="text-blueGray-400 leading-relaxed wow animate__animated animate__fadeIn">We
-                                      are a <span className="typewrite d-inline text-brand" data-period="3000"
-                                          data-type='["creative agency", "PR firm", "global brand" ]'></span></p>
-                              </div>
-                              <div>
-                                  <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-400 hover:bg-blue-500 rounded wow animate__animated animate__fadeInUp"
-                                      href="#key-features">Key Features</a>
-                                  <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 text-xs text-blueGray-500 hover:text-blueGray-600 text-center font-semibold leading-none bg-white rounded wow animate__animated animate__fadeInUp"
-                                      data-wow-delay=".3s" href="#how-we-work">How We Work?</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+               </motion.section>
 
-                  <div className="bg-top bg-cover bg-no-repeat pb-8 relative pt-24 h-vh"
-                      style={{ backgroundImage:"url('https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606574/Tpt/imgs/placeholders/img-14_twiz9h.jpg')" }}>
-                      <div className="container">
-                          <div className="py-12 text-center">
-                              <div className="max-w-2xl mx-auto mb-8">
-                                  <h2
-                                      className="text-white text-3xl lg:text-5xl mb-4 font-bold font-heading wow animate__animated animate__fadeIn">
-                                      TPT <span className="text-blue-500">International</span></h2>
-                                  <p className="text-blueGray-400 leading-relaxed wow animate__animated animate__fadeIn">We
-                                      are a <span className="typewrite d-inline text-brand" data-period="3000"
-                                          data-type='["creative agency", "PR firm", "global brand" ]'></span></p>
-                              </div>
-                              <div>
-                                  <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-400 hover:bg-blue-500 rounded wow animate__animated animate__fadeInUp"
-                                      href="#key-features">Key Features</a>
-                                  <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 text-xs text-blueGray-500 hover:text-blueGray-600 text-center font-semibold leading-none bg-white rounded wow animate__animated animate__fadeInUp"
-                                      data-wow-delay=".3s" href="#how-we-work">How We Work?</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+               <article className="z-20 bg-cover top-0 left-0 right-0 bottom-0 bg-black bg-opacity-10 absolute"
+                style={{
+                    backgroundColor:"rgba(0, 0, 0, 0.5)",
+                        display:"grid",
+                        placeContent:"center"
+                 }}
+               >
+
+            <div className="container">
+                        <div className="py-12 text-center">
+                            <div className="max-w-2xl mx-auto mb-8">
+                                <h2
+                                    className="text-white text-3xl lg:text-5xl mb-4 font-bold font-heading wow animate__animated animate__fadeIn">
+                                    TPT <span className="text-blue-500">International</span></h2>
+                                <p className="text-blueGray-400 leading-relaxed wow animate__animated animate__fadeIn">to your advantage <span className="typewrite d-inline text-brand" data-period="3000"
+                                        data-type='["creative agency", "PR firm", "global brand" ]'></span></p>
+                            </div>
+                            <div>
+                                <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-400 hover:bg-blue-500 rounded wow animate__animated animate__fadeInUp"
+                                    href="#key-features">Key Features</a>
+                                <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 text-xs text-blueGray-500 hover:text-blueGray-600 text-center font-semibold leading-none bg-white rounded wow animate__animated animate__fadeInUp"
+                                    data-wow-delay=".3s" href="#how-we-work">How We Work?</a>
+                            </div>
+                        </div>
+                    </div>
 
 
+               </article>
+                </div>
+<div className='relative overflow-hidden'>
+ <img src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673618537/Tpt/imgs/Happy_friends_sitting_near_campfire_at_summer_night_lmxrbp.jpg" />
 
-          </Carousel>
+ <article className="z-20 bg-cover top-0 left-0 right-0 bottom-0 bg-black bg-opacity-10 absolute"
+                style={{backgroundColor:"rgba(0, 0, 0, 0.5)", display:"grid", placeContent:"center"}}>
+
+    <div className="container">
+                        <div className="py-12 text-center">
+                            <div className="max-w-2xl mx-auto mb-8">
+                                <h2
+                                    className="text-white text-3xl lg:text-5xl mb-4 font-bold font-heading wow animate__animated animate__fadeIn">
+                                    TPT <span className="text-blue-500">International</span></h2>
+                                <p className="text-blueGray-400 leading-relaxed wow animate__animated animate__fadeIn">to your advantage <span className="typewrite d-inline text-brand" data-period="3000"
+                                        data-type='["creative agency", "PR firm", "global brand" ]'></span></p>
+                            </div>
+                            <div>
+                                <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 mb-4 sm:mb-0 sm:mr-3 text-xs text-white text-center font-semibold leading-none bg-blue-400 hover:bg-blue-500 rounded wow animate__animated animate__fadeInUp"
+                                    href="#key-features">Key Features</a>
+                                <a className="tracking-wide hover-up-2 block sm:inline-block py-4 px-8 text-xs text-blueGray-500 hover:text-blueGray-600 text-center font-semibold leading-none bg-white rounded wow animate__animated animate__fadeInUp"
+                                    data-wow-delay=".3s" href="#how-we-work">How We Work?</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+ <motion.article
+            // initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity:num === 0?1:0, scale: num === 0?1:0 }}
+            transition={{ duration: 0.5 }}
+
+          className="box arrow-bottom" >
+          This is a box with some content and an arrow at the bottom.
+          </motion.article>
+
+
+
+          <motion.article
+              animate={{ opacity:num === 1?1:0, scale: num === 1?1:0 }}
+              transition={{ duration: 0.5 }}
+          className="boxseconded arrow-bottomsec" >
+          This is a box with some content and an arrow at the bottom.
+          </motion.article>
+
+
+            <motion.article
+                 animate={{ opacity:num === 2?1:0, scale: num === 2?1:0 }}
+                 transition={{ duration: 0.5 }}
+            className="boxthird arrow-bottomthrid" >
+          This is a box with some content and an arrow at the bottom.
+          </motion.article>
+
+
+          <motion.article
+           animate={{ opacity:num === 3?1:0, scale: num === 3?1:0 }}
+           transition={{ duration: 0.5 }}
+          className="boxfourth arrow-bottomfouth" >
+          This is a box with some content and an arrow at the bottom.
+          </motion.article>
+
+ </div>
+   </Carousel>
+
           </section>
           <section className="py-12 md:py-16 lg:py-32 overflow-x-hidden" id="key-features">
               <div className="container px-4 mx-auto">
@@ -347,98 +280,74 @@ function Example() {
                           <h2 className="text-4xl font-bold font-heading wow animate__ animate__fadeInUp animated"
                               data-wow-delay=".1s"
                               style={offer} >
-                              <span>Our Offerings</span>
+                              <span>your Business</span>
                               <br/>
-                               <span className="text-blue-600">your Business</span>
+                               {/* <span className="text-blue-600">your Business</span> */}
                           </h2>
                       </div>
+                      {/* direction arrows */}
                       <div className="w-full lg:w-1/2">
                           <div className="lg:relative lg:bottom-0 lg:left-0 flex justify-center wow animate__animated animate__fadeInUp"
                               data-wow-delay=".5s">
-                              <div id="carausel-fade-1-arrows" className="flex"></div>
+
+
                           </div>
-                           <p className="lg:pl-16 text-blueGray-400 leading-loose wow animate__ animate__fadeInUp animated" data-wow-delay=".4s" style={{ visibility:"visible",  animationDelay:"0.4s", animationName:"fadeInUp" }}>Business solution company sit our any how site used the our company any site us it-solve theme is very professional theme business &amp; corporate, finance, advisor, solution, company and all project used, there are all kinds of websites here.</p>
+                           <p className="lg:pl-16 text-blueGray-400 leading-loose wow animate__ animate__fadeInUp animated" data-wow-delay=".4s" style={{ visibility:"visible",  animationDelay:"0.4s", animationName:"fadeInUp" }}>converging technologies are transforming our business, industries and our lives</p>
                       </div>
+
+
                   </div>
+                            {/* arrows inside here */}
+                            <article
+                            style={{
+                                width:"10%",
+                                display:"flex",
+                                justifyContent:"space-between",
+                                margin:"auto"
+                            }}
+                            >
+                                {/* // AiOutlineArrowRight AiOutlineArrowLeft */}
+                                <button onClick={prevSlide} ><AiOutlineArrowLeft onClick={prevSlide} className="text-lg"/></button>
+                                <button onClick={nextSlide}>
+                                    <AiOutlineArrowRight onClick={nextSlide} className='text-lg'/>
+                                </button>
+
+                             </article>
                   <div className="carausel-fade slick-carausel" id="carausel-fade-1">
-                      <div>
-                          <div className="flex flex-wrap">
-                              <div className="relative w-full lg:w-1/2 mb-8 lg:mb-0 text-center lg:text-left">
-                                  <div className="max-w-md lg:max-w-full lg:pr-16 mx-auto lg:ml-0 mb-6 lg:mb-0">
-                                      <h2 className="text-3xl md:text-4xl mb-4 font-bold font-heading wow animate__animated animate__fadeInUp animated"
-                                          data-wow-delay=".3s">Simple Solution for <span
-                                              className="text-blue-500">Complex</span> Connections1</h2>
-                                      <p className="text-xs md:text-base text-blueGray-400 leading-loose wow animate__animated animate__fadeInUp"
-                                          data-wow-delay=".9s">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                          Sed luctus eget justo et iaculis.</p>
-                                  </div>
-                                  <div className="absolute">
-                                      <a className="tracking-wide hover-up-2 mr-2 block px-4 py-3 text-xs text-blue-500 font-semibold leading-none border border-blue-200 hover:border-blue-500 hover:text-white hover:bg-blue-500 rounded"
-                                          tabIndex="0">Read more...</a>
-                                  </div>
-                              </div>
-                              <div className="w-full lg:w-1/2 flex flex-wrap px-3 wow animate__animated animate__fadeInUp"
-                                  data-wow-delay=".5s">
-                                  <div className="relative w-full rounded">
-                                      <div className="rounded">
-                                          <img className="rounded" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606576/Tpt/imgs/placeholders/img-6_qe6ftt.jpg" alt="" />
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div>
-                          <div className="flex flex-wrap">
-                              <div className="relative w-full lg:w-1/2 mb-8 lg:mb-0 text-center lg:text-left">
-                                  <div className="max-w-md lg:max-w-full lg:pr-16 mx-auto lg:ml-0 mb-6 lg:mb-0">
-                                      <h2 className="text-3xl md:text-4xl mb-4 font-bold font-heading wow animate__animated animate__fadeInUp animated"
-                                          data-wow-delay=".3s">Simple Solution for <span
-                                              className="text-blue-500">Complex</span> Connections2</h2>
-                                      <p className="text-xs md:text-base text-blueGray-400 leading-loose wow animate__animated animate__fadeInUp"
-                                          data-wow-delay=".9s">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                          Sed luctus eget justo et iaculis.</p>
-                                  </div>
-                                  <div className="absolute">
-                                      <a className="tracking-wide hover-up-2 mr-2 block px-4 py-3 text-xs text-blue-500 font-semibold leading-none border border-blue-200 hover:border-blue-500 hover:text-white hover:bg-blue-500 rounded"
-                                          tabIndex="0">Read more...</a>
-                                  </div>
-                              </div>
-                              <div className="w-full lg:w-1/2 flex flex-wrap px-3 wow animate__animated animate__fadeInUp"
-                                  data-wow-delay=".5s">
-                                  <div className="relative w-full rounded">
-                                      <div className="rounded">
-                                          <img className="rounded" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606579/Tpt/imgs/placeholders/img-7_sqm8o3.png" alt="" />
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div>
-                          <div className="flex flex-wrap">
-                              <div className="relative w-full lg:w-1/2 mb-8 lg:mb-0 text-center lg:text-left">
-                                  <div className="max-w-md lg:max-w-full lg:pr-16 mx-auto lg:ml-0 mb-6 lg:mb-0">
-                                      <h2 className="text-3xl md:text-4xl mb-4 font-bold font-heading wow animate__animated animate__fadeInUp animated"
-                                          data-wow-delay=".3s">Simple Solution for <span
-                                              className="text-blue-500">Complex</span> Connections3</h2>
-                                      <p className="text-xs md:text-base text-blueGray-400 leading-loose wow animate__animated animate__fadeInUp"
-                                          data-wow-delay=".9s">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                          Sed luctus eget justo et iaculis.</p>
-                                  </div>
-                                  <div className="absolute">
-                                      <a className="tracking-wide hover-up-2 mr-2 block px-4 py-3 text-xs text-blue-500 font-semibold leading-none border border-blue-200 hover:border-blue-500 hover:text-white hover:bg-blue-500 rounded"
-                                          tabIndex="0">Read more...</a>
-                                  </div>
-                              </div>
-                              <div className="w-full lg:w-1/2 flex flex-wrap px-3 wow animate__animated animate__fadeInUp"
-                                  data-wow-delay=".5s">
-                                  <div className="relative w-full rounded">
-                                      <div className="rounded">
-                                          <img className="rounded" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606579/Tpt/imgs/placeholders/img-8_ntrmtz.png" alt="" />
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                    {/* arrow silde show  */}
+                    {SliderData.map((slide, index)=>{
+                   return  <div  className='mt-4' key={index} >
+                     <div
+                     className={index === current ? 'slide active flex flex-rows ' : 'slide hidden flex flex-wrap'}
+                     >
+                         <div className="relative w-full lg:w-1/2 mb-8 lg:mb-0 text-center lg:text-left">
+                             <div className="max-w-md lg:max-w-full lg:pr-16 mx-auto lg:ml-0 mb-6 lg:mb-0">
+                                 <h2 className="text-3xl md:text-4xl mb-4 font-bold font-heading wow animate__animated animate__fadeInUp animated"
+                                     data-wow-delay=".3s"> <span
+                                         className="text-blue-500">{slide.header}</span></h2>
+                                 <p className="text-xs md:text-base text-blueGray-400 leading-loose wow animate__animated animate__fadeInUp"
+                                     data-wow-delay=".9s">{slide.body}</p>
+                             </div>
+                             <div className="absolute">
+                                 <a className="tracking-wide hover-up-2 mr-2 block px-4 py-3 text-xs text-blue-500 font-semibold leading-none border border-blue-200 hover:border-blue-500 hover:text-white hover:bg-blue-500 rounded"
+                                     tabIndex="0">Read more...</a>
+                             </div>
+                         </div>
+                         <div className="w-full lg:w-1/2 flex flex-wrap px-3 wow animate__animated animate__fadeInUp"
+                             data-wow-delay=".5s">
+                             <div className="relative w-full rounded">
+                                 <div className="rounded">
+                                     <img className="rounded" src={slide.image} alt="" />
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                    })}
+
+                         {/* arrow silde show  */}
+
+
                   </div>
               </div>
           </section>
@@ -538,43 +447,37 @@ function Example() {
                           <h2
                               className="text-3xl md:text-4xl font-bold font-heading wow animate__animated animate__fadeInDown">
                               <span>Case Studies</span>
-                                <span className="text-blue-500">awesome team</span>
+                                 <span className="text-blue-500"> awesome team</span>
                                <br />
                               <span>for your business dream</span>
                           </h2>
                       </div>
                       <div className="w-full lg:w-1/2 lg:pl-16">
-                          <p className="text-blueGray-400 leading-loose wow animate__animated animate__fadeInUp">Lorem ipsum
-                              dolor sit amet, consectetur adipiscing elit. Sed luctus eget justo et iaculis. Quisque vitae
-                              nulla malesuada, auctor arcu vitae, luctus nisi. Sed elementum vitae ligula id imperdiet.
+                          <p className="text-blueGray-400 leading-loose wow animate__animated animate__fadeInUp">
+                          TPT International Ltd is reputed for conceiving and executing first rate PR and events activation for its retained and one-off clients.
+                          The Chief Consultant, Adetokunbo Modupe led his team to execute some of the under-listed projects.
                           </p>
                       </div>
                   </div>
                   <div className="flex flex-row -mx-3 -mb-6 text-center " style={{display:"grid",  gridTemplateColumns:"repeat(auto-fit, minimax(260px, 1fr))", gridColumnGap:"1.5rem", gridRowGap:"2rem" }}>
-                      <div className="relative w-full md:w-1/2 lg:w-1/3 mb-6 border border-white">
-                              <img className="w-full ease-in duration-500 imgScale" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606565/Tpt/imgs/illustrations/eating_o1lbtg.svg" alt=""/>
-                              <div className="w-full h-full absolute" style={{ backgroundColor:"rgba(0,0,0, 0.5)", top:"0", zIndex:"1" }}></div>
-                              <div className="w-full h-full absolute inset-y-2/4" style={{ zIndex:"2" }}>
-                                  <h3 className="mb-2 font-bold font-heading text-white border border-white p-3 inline-block">Project Initialization</h3>
-                                  <p className=" text-sm text-blueGray-400 leading-relaxed text-white">Sed ac magna sit amet risus tristique interdum at vel velit. In hac habitasse platea dictumst.</p>
-                              </div>
-                      </div>
-                      <div className="relative w-full md:w-1/2 lg:w-1/3 mb-6 border border-white">
-                          <img className="w-full ease-in duration-500 imgScale" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606565/Tpt/imgs/illustrations/eating_o1lbtg.svg" alt=""/>
-                          <div className="w-full h-full absolute" style={{ backgroundColor:"rgba(0,0,0, 0.5)", top:"0", zIndex:"1" }}></div>
-                          <div className="w-full h-full absolute inset-y-2/4" style={{ zIndex:"2" }}>
-                              <h3 className="mb-2 font-bold font-heading text-white border border-white p-3 inline-block">Project Initialization</h3>
-                              <p className=" text-sm text-blueGray-400 leading-relaxed text-white">Sed ac magna sit amet risus tristique interdum at vel velit. In hac habitasse platea dictumst.</p>
-                          </div>
-                  </div>
-                  <div className="relative w-full md:w-1/2 lg:w-1/3 mb-6 border border-white">
-                      <img className="w-full ease-in duration-500 imgScale" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606565/Tpt/imgs/illustrations/eating_o1lbtg.svg" alt=""/>
-                      <div className="w-full h-full absolute" style={{ backgroundColor:"rgba(0,0,0, 0.5)", top:"0", zIndex:"1" }}></div>
-                      <div className="w-full h-full absolute inset-y-2/4" style={{ zIndex:"2" }}>
-                          <h3 className="mb-2 font-bold font-heading text-white border border-white p-3 inline-block">Project Initialization</h3>
-                          <p className=" text-sm text-blueGray-400 leading-relaxed text-white">Sed ac magna sit amet risus tristique interdum at vel velit. In hac habitasse platea dictumst.</p>
-                      </div>
-              </div>
+                    {/* gehghghdhg */}
+
+                    {Datas.length >0?
+                    Datas.map((item)=>{
+                        return  <div className="relative w-full md:w-1/2 lg:w-1/3 mb-6 border border-white">
+                        <img className="w-full ease-in duration-500 imgScale" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606565/Tpt/imgs/illustrations/eating_o1lbtg.svg" alt=""/>
+                        <div className="w-full h-full absolute" style={{ backgroundColor:"rgba(0,0,0, 0.5)", top:"0", zIndex:"1" }}></div>
+                        <div className="w-full h-full absolute inset-y-2/4" style={{ zIndex:"2" }}>
+                            <h3 className="mb-2 font-bold font-heading text-white border border-white p-3 inline-block">{item.name}</h3>
+                            <p className=" text-sm text-blueGray-400 leading-relaxed text-white">Sed ac magna sit amet risus tristique interdum at vel velit. In hac habitasse platea dictumst.</p>
+                        </div>
+                </div>
+                    })
+                    :''}
+
+
+
+
                   </div>
               </div>
 
