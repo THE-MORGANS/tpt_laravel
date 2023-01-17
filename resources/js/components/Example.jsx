@@ -486,7 +486,7 @@ const [show, Setshow] =useState(false)
                       tabIndex="0">Show More...</a>
               </div>
           </section>
-          <section className="pb-20 mt-12" id="key-features">
+          {/* <section className="pb-20 mt-12" id="key-features">
               <div className="container">
                   <div className="max-w-lg mx-auto mb-12 text-center">
                       <h2 className="my-2 text-3xl md:text-4xl font-bold font-heading wow animate__animated animate__fadeInUp"
@@ -630,8 +630,8 @@ const [show, Setshow] =useState(false)
                       </div>
                   </div>
               </div>
-          </section>
-          <section className="py-20 xl:bg-contain bg-top bg-no-repeat"
+          </section> */}
+          {/* <section className="py-20 xl:bg-contain bg-top bg-no-repeat"
               style={{ backgroundImage:"url('https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606559/Tpt/imgs/backgrounds/intersect_thgazb.svg')" }}>
               <div className="container">
                   <div className="text-center mb-8">
@@ -717,7 +717,7 @@ const [show, Setshow] =useState(false)
                       </div>
                   </div>
               </div>
-          </section>
+          </section> */}
           <section className="py-20">
               <div className="container">
                   <div className="max-w-2xl lg:max-w-3xl mx-auto">
@@ -846,7 +846,7 @@ const [show, Setshow] =useState(false)
                           className="w-full lg:w-1/2 pt-20 px-4 max-w-lg lg:max-w-full mx-auto lg:mx-0 text-center lg:text-left">
                           <a className="inline-block mx-auto lg:ml-0 text-3xl font-semibold leading-none wow animate__animated animate__fadeInUp animated"
                               data-wow-delay=".1s" href="index.html">
-                              <img className="h-10" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606570/Tpt/imgs/logos/monst-logo_xdyxjw.svg" alt="" />
+                              <img className="h-10" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606570/Tpt/imgs/logos/TPT-logo_uwq0un.png" alt="" />
                           </a>
                           <div className="mt-12 mb-16">
                               <p className="mb-4 text-xs text-blueGray-400 text-center lg:text-left wow animate__animated animate__fadeInUp animated"

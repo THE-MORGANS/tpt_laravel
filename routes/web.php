@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [viewConteroller::class, 'home']);
 Route::get('/case', [viewConteroller::class, 'casestudies']);
+Route::get('/viewcase/{name}', [viewConteroller::class, 'viewcase']);

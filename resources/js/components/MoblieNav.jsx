@@ -1,19 +1,27 @@
 import React from 'react'
 import {AiOutlineClose} from 'react-icons/ai';
 export default function MoblieNav(props) {
-
+    let url = window.location.origin
     const handleClose =()=>{
         if(props.show){
           props.Setshow(false)
         }
       }
+
+      const handleGo =()=>{
+        window.location.href =`${url}/case`
+     }
+
+     const handleHome =()=>{
+        window.location.href =`${url}`
+     }
   return (
     <div className={props.show?"navbar-menu relative z-50 transition duration-300":"hidden navbar-menu relative z-50 transition duration-300"}   >
     <div className="navbar-backdrop fixed inset-0 bg-blueGray-800 opacity-25"></div>
     <nav
         className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto transition duration-300">
-        <div className="flex items-center mb-8">
-            <a className="mr-auto text-3xl font-semibold leading-none" href="#">
+        <div className="flex items-center mb-8" >
+            <a className="mr-auto text-3xl font-semibold leading-none"  onClick={handleHome}>
                 <img className="h-10" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606570/Tpt/imgs/logos/TPT-logo_uwq0un.png" alt="" />
             </a>
             <button className="navbar-close">
@@ -22,9 +30,9 @@ export default function MoblieNav(props) {
         </div>
         <div>
             <ul className="mobile-menu">
-                <li className="mb-1 menu-item-has-children rounded-xl">
+                <li className="mb-1 menu-item-has-children rounded-xl" onClick={handleHome}>
                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500 rounded-xl"
-                        href="#">Home</a>
+                        >Home</a>
                 </li>
                 <li className="mb-1 rounded-xl">
                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500 rounded-xl"
@@ -34,7 +42,7 @@ export default function MoblieNav(props) {
                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
                        >Our services</a>
                 </li>
-                <li className="mb-1">
+                <li className="mb-1" onClick={handleGo}>
                     <a className="block p-4 text-sm text-blueGray-500 hover:bg-blue-50 hover:text-blue-500"
                        >Case studies</a>
                 </li>

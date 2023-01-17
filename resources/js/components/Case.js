@@ -39,13 +39,13 @@ export const casestudies = [
             ],
         other:[
             {
-                headerone:"Agency’s Task",
-                bodyone:"Agency promised to deliver an event that resonates with the target audience and also help generate conversation for the brand as well as sustain awareness/buzz for the brand through strategic media exploitation of the show",
+                header:"Agency’s Task",
+                body:"Agency promised to deliver an event that resonates with the target audience and also help generate conversation for the brand as well as sustain awareness/buzz for the brand through strategic media exploitation of the show",
 
             },
             {
-                headertwo:"Objectives",
-                bodytwo:[
+                header:"Objectives",
+                body:[
                     `Use the engagement as a platform to amplify the Bigi brand, as well as create affinity and emotional connect between the brand and its target audience`,
                      `Help deepen, the storytelling platform for the corporate brand`,
                      `Leverage on Entertainment Content Drivers in deepening the brand support for talent development in Nigeria`,
@@ -53,22 +53,22 @@ export const casestudies = [
                 ],
             },
             {
-                headerthree:`CREATIVE HIGH POINT`,
-                bodythree:[
+                header:`CREATIVE HIGH POINT`,
+                body:[
                     `The creative high point of the BMI was the microphone stunt which has now become part of the main Nigerian Idol Music Reality Show sponsored by Bigi Drinks.The Bigi Microphone Stunt ideation depicts 13 variants of Bigi drinks as microphone stands that illustrate the discovery of musical talents in Nigeria.`,
                     `This new approach in delivering PR was to strengthened Bigi’s ownership of Nigerian Idol sponsorship by connecting it more to the consumers through the Bigi brand.`,
                     `The Bigi Media Idol/Microphone Stunt concept excited and enabled media buy-in and generous use of the content of the event for consumer delight, market penetration and brand equity building. Due to its uniqueness, content users feasted on it generously to the benefit of the brand. `,
                 ]
             },
             {
-                headerfour:`Impact`,
-                bodyfour:[
+                header:`Impact`,
+                body:[
                     `The multi variant microphone with each of the stands representing the various CSD variants created the desired impact as each of the Content Drivers took photographs and also used it on their various social media platforms.`
                 ]
             },
           {
-            headerfive:`Returns on Investment [ROI]`,
-            bodyfive:`Aside the earned/improved brand equity, over 227% was achieved on the Return on Investment`
+            header:`Returns on Investment [ROI]`,
+            body:`Aside the earned/improved brand equity, over 227% was achieved on the Return on Investment`
           }
         ],
         whatwedid:`For the first time in the history of Nigerian Idol, an international Musical Talent Discovery platform, TPT International conceptualized the ‘Bigi Media Idol’ [BMI]to leverage Bigi carbonated soft drinks’ sponsorship of the international Musical Talent TV Show.  BMI was designed as a mini replica of the Nigerian Idol for Rite Foods Limited with all the trappings of the main show to allow Content Drivers, Content influencers and bloggers to perform and compete for prizes in an immersive event that created so much excitement and huge positive reviews. The BMI became an instant sensation as the Multichoice Group requested for the footage to be used during the live shows and on their digital platforms, thus earning for the brand free and generous publicity.`,
@@ -118,8 +118,8 @@ export const casestudies = [
         whatwedid:`Rather than going with the usual pedestrian sponsorship announcement, we conceptualized the Fela  Posthumous Award to immortalise the late Fela Anikulapo Kuti. Agency conceptualized a creative and distinctively impactful strategy to achieve sponsorship dominance for Fearless energy drink, being one of the sponsors of Felabration 2021.The platform involved several sponsors; yet, the Agency cracked a Big idea that became the high point of not only the event but stole the entire conversation and storytelling that gave the Felabration platform more visibility through the eye-ball exploitation and big news orchestrated by the Fearless energy drink brand. `,
         other:[
          {
-            headerone:`The Fela Posthumous Award `,
-            bodyone:[
+            header:`The Fela Posthumous Award `,
+            body:[
                 `Fela’s family being adverse to government and corporate exploitation of the Fela brand, have refused in the past to accept awards from government or private institutions.`,
                 `Founder of the Felabration and Fela’s first daughter, Yeni Anikulapo-Kuti led the family to receive the award with a thunderous applause.  However, honouring Fela at the family event with a posthumous award themed ‘’Fearless Posthumous Award’’ was irresistible as it aligned with Fela’s essence of being a courageous man, social crusader and critic.`,
                 `This was a big breakthrough for the Fearless Brand in leveraging the sponsorship platform alongside Fela’s credibility and brand personality to the world. The Award presentation was creatively done as the high point of the 2021 Felabration Event.`,

@@ -3,9 +3,39 @@ import ReactDOM from 'react-dom/client';
 import Navbar from './Navbar';
 import MoblieNav from './MoblieNav';
 import { casestudies } from './Case';
+import ReactPaginate from 'react-paginate';
+
 export default function Casestudies() {
 
     const [show, Setshow] =useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const[postPerPage, setPostsperPage] = useState(10)
+
+    let num = [];
+    for (let i = 1; i <= Math.ceil(casestudies.length / postPerPage); i++) {
+      num.push(i);
+
+    }
+    let numberofpages = num.length;
+
+    const indexofLastPost = currentPage * postPerPage
+const indexofFirstPost = indexofLastPost - postPerPage
+ const Post = casestudies?.slice(indexofFirstPost, indexofLastPost)
+
+
+ const handleNext =(data)=>{
+    let Answer = data.selected + 1;
+    setCurrentPage(Answer)
+ }
+
+ let url = window.location.origin
+
+ const handleview =(name)=>{
+  window.location.href = `${url}/viewcase/${name}`
+ }
+
+
+
 
   return (
     <div className="main">
@@ -23,8 +53,8 @@ export default function Casestudies() {
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                     </svg>
                 </li>
-                <li className="inline-flex items-center text-gray-400">
-                    <span>Case Studies</span>
+                <li className="inline-flex items-center text-gray-400" >
+                    <span >Case Studies</span>
                 </li>
             </ul>
         </div>
@@ -47,30 +77,49 @@ export default function Casestudies() {
             </div>
             <div className="flex flex-wrap -mx-3 mb-6 lg:mb-0">
                 <div className="w-full lg:w-full flex flex-wrap  items-center justify-center px-3 mb-6 lg:md-0 " style={{display:"grid",  gridTemplateColumns:"repeat(auto-fit, minimax(260px, 1fr))", gridColumnGap:"1.5rem", gridRowGap:"2rem" }} >
-{/*
-                    <div className="hover-up-5 w-1/4 h-64 px-3 py-3 wow animate__animated animate__fadeIn animated" data-wow-delay=".1s">
-                        <img className="h-full object-cover rounded" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606572/Tpt/imgs/placeholders/img-10_elf2as.jpg" alt="" />
-                    </div> */}
 
+                        {Post.length > 0?
+                        Post.map((item)=>{
+                          if(item.name === "Bigi" || item.name === "Fearless"){
+                               return   <div className="hover-up-5  w-1/6 h-64  wow animate__animated animate__fadeIn animated relative" data-wow-delay=".1s" onClick={()=>handleview(item.name)}>
+                               <img className="h-full w-full object-cover rounded" src="https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606572/Tpt/imgs/placeholders/img-10_elf2as.jpg" alt="" />
 
+                               <article className='flex flex-row items-center justify-center w-full rounded-md absolute top-0 left-0 right-0 bottom-0 bg-cover  bg-opacity-10'
+                              style={{ backgroundColor:'rgba(0, 0, 0, 0.2)' }}>
 
-                    {casestudies.length >0?
-                    casestudies.map((item, index)=>{
+                                 <div className='w-10/12 m-auto flex flex-col items-center justify-center py-1 px-8'>
+                                      <div className='rounded-md px-2 p-3 border border-white font-semibold text-white'>
+                                      {item.name}
+                                       </div>
 
-                        return  <div className="relative w-full md:w-1/2 lg:w-1/3 mb-6 border border-white" key={index}>
-                        <img className="w-full ease-in duration-500 imgScale" src= "https://res.cloudinary.com/the-morgans-consortium/image/upload/v1673606565/Tpt/imgs/illustrations/eating_o1lbtg.svg" alt=""/>
-                        <div className="w-full h-full absolute" style={{ backgroundColor:"rgba(0,0,0, 0.5)", top:"0", zIndex:"1" }}></div>
-                        <div className="w-full h-full absolute inset-y-2/4 flex flex-col items-center" style={{ zIndex:"2", }}>
-                            <h3 className="mb-2 font-bold font-heading text-white border border-white p-3 inline-block">{item.name}</h3>
-                            <p className=" text-sm text-blueGray-400 leading-relaxed text-white">{item.body1?item.body1.substring(0,100):""}</p>
-                        </div>
+                                       <section className='px-2 py-2  text-justify font-medium text-white'>
+                                       {item.body1?item.body1.substring(0,100):""}
+                                       </section>
+                                 </div>
+
+                               </article>
+                           </div>
+                          }
+                        })
+
+                        :""}
                 </div>
-
-
-                    })
-                    :''}
-
-                </div>
+                <section className="w-full flex flex-row items-center justify-center">
+                <ReactPaginate
+                previousLabel={'previous'}
+                nextLabel={'next'}
+                    pageCount={numberofpages}
+                    breakLabel={"..."}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={2}
+                    onPageChange={handleNext}
+                    containerClassName={'inline-flex items-center justify-center '}
+                    pageClassName={'m-2'}
+                    pageLinkClassName={'h-10 px-5 text-indigo-600 transition-colors duration-150 bg-white focus:shadow-outline hover:bg-blue-500 hover:text-white'}
+                    previousClassName={'h-10 px-5 text-indigo-600 transition-colors text-center duration-150 bg-white focus:shadow-outline hover:bg-blue-500 flex items-center justify-center rounded-tl-lg rounded-bl-lg hover:text-white'}
+                    nextClassName={'h-10 px-5 text-indigo-600 transition-colors text-center duration-150 bg-white focus:shadow-outline hover:bg-blue-500 flex items-center justify-center rounded-tr-lg rounded-br-lg hover:text-white'}
+                />
+                </section>
             </div>
         </div>
     </section>
